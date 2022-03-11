@@ -6,5 +6,5 @@ import { actionsTypes } from '../constants';
 /* AUTHENTICATION */
 export async function getValues(){
     const response = await api.get('/values');
-    return { type: actionsTypes.GET_VALUES, payload: response.data };
+    return { type: actionsTypes.GET_VALUES, payload: response };
 }
