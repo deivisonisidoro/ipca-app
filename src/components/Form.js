@@ -10,7 +10,7 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import { DatePicker } from '@mui/lab';
 import moment from 'moment';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getExternalValues} from '../action';
 import brLocale from 'date-fns/locale/pt-BR';
 import { makeStyles } from '@material-ui/core';
@@ -25,7 +25,8 @@ export default function FormSearch() {
 
   /* HOOKS*/
   const dispatch = useDispatch();
-
+  const {internal_search, external_search} = useSelector(state => state.utilsReducer);
+  
   /* FUNCTIONS */
   const handleSubmit =async (event) => {
     event.preventDefault();
@@ -48,7 +49,8 @@ export default function FormSearch() {
           }}
         >
           <Typography component="h1" color="primary" variant="h5">
-            Busca de IPCA no Banco Central
+            { external_search === true && "Busca de IPCA no Banco Central"}
+            { internal_search === true && "Busca de IPCA  na API"}
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
          

@@ -1,67 +1,17 @@
-import React, { useEffect } from 'react';
-
+import React from 'react';
+import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { useDispatch, useSelector } from 'react-redux';
-import {  getValues } from '../action';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
 
+/* COMPONENTS*/
 
-import FormSearch from '../components/Form';
-import DateTable from '../components/DateTable';
-import { Grid, Paper } from '@material-ui/core';
+import { useHistory } from 'react-router-dom'
+import InternalCard from '../components/InternalCard';
+import { useDispatch } from 'react-redux';
+import ExternalCard from '../components/ExternalCard';
 
-
-export default function Home() {
-
-  /* STYLES */
-  const classes = useStyles();
-
-  /* HOOKS */
-  const dispatch = useDispatch();
-  const {externalValues} = useSelector(state => state.valuesReducer);
-  console.log(externalValues);
-  
-  
-  /* FUNCTION */
-  
-  const loadValues = async()=>{
-    dispatch(await getValues());
-  };
-
-  /* EFFECTS */
-  useEffect(()=>{
-    loadValues();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[]);
-
-
-
-  return (
-    <div className={classes.root}>
-
-      <main className={classes.content}>
-        <div className={classes.appBarSpacer} />
-        <Container  maxWidth="lg" className={classes.container}>
-          <Grid container spacing={3}>
-            <Grid  item xs={12}  >
-              <Paper    className={classes.paper}>
-                <FormSearch/>
-              </Paper>
-            </Grid>
-            <Grid  item xs={12}  >
-              <Paper    className={classes.paper}>
-                  {externalValues.length > 0 && 
-                    <DateTable/>
-                  }
-              </Paper>
-            </Grid>
-          </Grid>
-          
-        </Container>
-      </main>
-    </div>
-  );
-}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -92,3 +42,59 @@ const useStyles = makeStyles((theme) => ({
    
   },
 }));
+
+export default function Hme() {
+
+  /* STYLES */
+  const classes = useStyles();
+
+  /* HOOKS */
+  const history = useHistory();
+  const dispatch = useDispatch()
+  
+  /* FUNCTION */
+  
+
+  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+
+  return (
+    <div className={classes.root}>
+      <main className={classes.content}>
+        <div className={classes.appBarSpacer} />
+        <Container  maxWidth="lg" className={classes.container}>
+          <Grid container spacing={3}>
+
+            <Grid item xs={12}  >
+              <Paper 
+                onClick={
+                  ()=>{
+                    dispatch({ type: 'INTERNAL_SEARCH', payload: false});
+                    dispatch({ type: 'EXTERNAL_SEARCH', payload: true});
+                    history.push('/busca-externa');
+                  }
+                } 
+                className={fixedHeightPaper}
+              >
+                <ExternalCard />
+              </Paper>
+            </Grid>
+            <Grid item xs={12} >
+              <Paper 
+                onClick={
+                  ()=>{
+                    dispatch({ type: 'INTERNAL_SEARCH', payload: true});
+                    dispatch({ type: 'EXTERNAL_SEARCH', payload: false});
+                    history.push('/busca-interna');
+                  }
+                } 
+              className={fixedHeightPaper}
+              >
+                <InternalCard />
+              </Paper>
+            </Grid>
+          </Grid>
+        </Container>
+      </main>
+    </div>
+  );
+}

@@ -12,7 +12,6 @@ export default function (state = INITIAL_STATE, action) {
         case actionsTypes.GET_VALUES:
             return { ...state, values:action.payload.data }
         case actionsTypes.GET_EXTERNAL_VALUES:
-            console.log(state);
             return { ...state, externalValues: action.payload.data }
       default: 
           return state;
