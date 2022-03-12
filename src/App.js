@@ -25,7 +25,7 @@ export default function App() {
       background: {
         default: darkMode ? '#181818' : '#FFF',
         dark: darkMode ? '#181818' : '#e5e5e5',
-        paper: darkMode ? '#323232' : '#e5e5e5',
+        paper: darkMode ? '#d3d3d3' : '#e5e5e5',
       },
     },
   });
