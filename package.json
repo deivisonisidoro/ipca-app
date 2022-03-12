@@ -7,6 +7,7 @@
       "/**" : " index.html "
   },
   "https_only" : true, 
+  "clean_urls": false,
   "buildpacks": [
     {
       "url": "mars/create-react-app"
