@@ -2,17 +2,7 @@
   "name": "ipca-web",
   "version": "0.1.0",
   "private": true,
-  "root" : " build/ " ,
-  "routes" : {
-      "/**" : " index.html "
-  },
-  "https_only" : true, 
-  "clean_urls": false,
-  "buildpacks": [
-    {
-      "url": "mars/create-react-app"
-    }
-  ],
+  "homepage": "http://https://ipca-app.herokuapp.com//relativepath",
   "dependencies": {
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
