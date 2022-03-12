@@ -2,11 +2,16 @@
   "name": "ipca-web",
   "version": "0.1.0",
   "private": true,
-  "root": "build/",
-  "clean_urls": false,
-  "routes": {
-    "/**": "index.html"
+  "root" : " build/ " ,
+  "routes" : {
+      "/**" : " index.html "
   },
+  "https_only" : true, 
+  "buildpacks": [
+    {
+      "url": "mars/create-react-app"
+    }
+  ],
   "dependencies": {
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
