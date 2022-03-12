@@ -12,29 +12,9 @@ import { DatePicker } from '@mui/lab';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
 import { getExternalValues} from '../action';
-
-import frLocale from 'date-fns/locale/fr';
-
-import deLocale from 'date-fns/locale/de';
-import enLocale from 'date-fns/locale/en-US';
 import brLocale from 'date-fns/locale/pt-BR';
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { makeStyles } from '@material-ui/core';
 
-const localeMap = {
-  en: enLocale,
-  fr: frLocale,
-  br: brLocale,
-  de: deLocale,
-};
-
-const maskMap = {
-  fr: '__/__/____',
-  en: '__/__/____',
-  br: '__.__.____',
-  de: '__.__.____',
-};
 
 export default function FormSearch() {
   /* STYLES */
@@ -42,7 +22,6 @@ export default function FormSearch() {
   /*STATES*/
   const [initialDate, setInitialDate] = useState(null);
   const [finalDate, setFinalDate] = useState(null);
-  const [locale, setLocale] = useState('br');
 
   /* HOOKS*/
   const dispatch = useDispatch();
@@ -58,9 +37,6 @@ export default function FormSearch() {
       )
     )
   };
-  const selectLocale = (newLocale) => {
-    setLocale(newLocale);
-  };
   return (
       <Container component="main" maxWidth="xs"  className={classes.container}>
         <Box
@@ -74,25 +50,14 @@ export default function FormSearch() {
           <Typography component="h1" color="primary" variant="h5">
             Busca de IPCA no Banco Central
           </Typography>
-          <ToggleButtonGroup value={locale} exclusive sx={{ mt: 3 }}>
-            {Object.keys(localeMap).map((localeItem) => (
-              <ToggleButton
-                key={localeItem}
-                value={localeItem}
-                onClick={() => selectLocale(localeItem)}
-              >
-                {localeItem}
-              </ToggleButton>
-            ))}
-          </ToggleButtonGroup>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
          
             <Grid container spacing={2}  >
                 <Grid item xs={12} sm={6} >
-                  <LocalizationProvider className={classes.datePicker} dateAdapter={AdapterDateFns} locale={localeMap[locale]}> 
+                  <LocalizationProvider className={classes.datePicker} dateAdapter={AdapterDateFns} locale={brLocale}>
                     <DatePicker
                       label="Data Inicial"
-                      mask={maskMap[locale]}
+                      mask={'__.__.____'[brLocale]}
                       value={initialDate}
                       onChange={(newValue) => setInitialDate(newValue)}
                       renderInput={(params) => <TextField {...params} />}
@@ -100,10 +65,10 @@ export default function FormSearch() {
                   </LocalizationProvider>
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                <LocalizationProvider dateAdapter={AdapterDateFns} locale={localeMap[locale]}> 
+                <LocalizationProvider dateAdapter={AdapterDateFns} locale={brLocale}> 
                     <DatePicker
                       label="Data Final"
-                      mask={maskMap[locale]}
+                      mask={'__.__.____'[brLocale]}
                       value={finalDate}
                       onChange={(newValue) => setFinalDate(newValue)}
                       renderInput={(params) => <TextField {...params} />}
