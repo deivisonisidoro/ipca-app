@@ -87,7 +87,7 @@ export default function FormSearch() {
           </ToggleButtonGroup>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
          
-            <Grid container spacing={2}>
+            <Grid container spacing={2}  >
                 <Grid item xs={12} sm={6} >
                   <LocalizationProvider className={classes.datePicker} dateAdapter={AdapterDateFns} locale={localeMap[locale]}> 
                     <DatePicker
@@ -96,7 +96,6 @@ export default function FormSearch() {
                       value={initialDate}
                       onChange={(newValue) => setInitialDate(newValue)}
                       renderInput={(params) => <TextField {...params} />}
-                      
                     />
                   </LocalizationProvider>
                 </Grid>

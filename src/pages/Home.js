@@ -2,11 +2,13 @@ import React, { useEffect } from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {  getValues } from '../action';
 
 
 import FormSearch from '../components/Form';
+import DateTable from '../components/DateTable';
+import { Grid, Paper } from '@material-ui/core';
 
 
 export default function Home() {
@@ -16,8 +18,8 @@ export default function Home() {
 
   /* HOOKS */
   const dispatch = useDispatch();
-
-
+  const {externalValues} = useSelector(state => state.valuesReducer);
+  console.log(externalValues);
   
   
   /* FUNCTION */
@@ -40,7 +42,21 @@ export default function Home() {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container  maxWidth="lg" className={classes.container}>
-          <FormSearch/>
+          <Grid container spacing={3}>
+            <Grid  item xs={12}  >
+              <Paper    className={classes.paper}>
+                <FormSearch/>
+              </Paper>
+            </Grid>
+            <Grid  item xs={12}  >
+              <Paper    className={classes.paper}>
+                  {externalValues.length > 0 && 
+                    <DateTable/>
+                  }
+              </Paper>
+            </Grid>
+          </Grid>
+          
         </Container>
       </main>
     </div>
