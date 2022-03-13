@@ -47,13 +47,13 @@ export default function InternalSearch() {
                 <FormSearch/>
               </Paper>
             </Grid>
-            <Grid  item xs={12}  >
-              <Paper    className={classes.paper}>
-                  {values.length > 0 && 
-                    <DateTable/>
-                  }
-              </Paper>
-            </Grid>
+            {values.length > 0 && 
+              <Grid  item xs={12}  >
+                <Paper    className={classes.paper}>
+                      <DateTable/>
+                </Paper>
+              </Grid>
+            }
           </Grid>
           
         </Container>

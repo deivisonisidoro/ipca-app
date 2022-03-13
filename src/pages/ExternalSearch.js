@@ -48,13 +48,13 @@ export default function ExternalSearch() {
                 <FormSearch/>
               </Paper>
             </Grid>
-            <Grid  item xs={12}  >
-              <Paper    className={classes.paper}>
-                  {externalValues.length > 0 && 
-                    <DateTable/>
-                  }
-              </Paper>
-            </Grid>
+            {externalValues.length > 0 && 
+              <Grid  item xs={12}  >
+                <Paper    className={classes.paper}>
+                      <DateTable/>
+                </Paper>
+              </Grid>
+            }
           </Grid>
           
         </Container>
