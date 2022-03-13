@@ -9,7 +9,7 @@ import PageNotFound from "./pages/PageNotFound";
 
 
 const Routes = () => (
-  <BrowserRouter>
+  <BrowserRouter basename="/React">
     <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path="/busca-externa" component={ExternalSearch} />
