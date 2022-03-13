@@ -2,11 +2,12 @@
   "name": "ipca-web",
   "version": "0.1.0",
   "private": true,
-  "buildpacks" : [
-    {
-      "url" : " mars/create-react-app "
-    }
-  ],
+  
+  "root": "build/",
+  "routes": {
+    "/home/**": "index.html",
+    "/**": "index.html"
+  },
   "dependencies": {
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
