@@ -7,7 +7,7 @@
   "routes": {
     "/**": "index.html"
   },
-  "homepage": "https://ipca-app.herokuapp.com",
+  "homepage": ".",
   "dependencies": {
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
