@@ -2,12 +2,6 @@
   "name": "ipca-web",
   "version": "0.1.0",
   "private": true,
-  
-  "root": "build/",
-  "routes": {
-    "/home/**": "index.html",
-    "/**": "index.html"
-  },
   "dependencies": {
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
